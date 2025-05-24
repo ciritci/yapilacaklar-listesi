@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <h2>Görev Listesi</h2>
+
+  <input type="text" id="gorevInput" placeholder="görev gir" />
+  <button onclick="gorevEkle()">Ekle</button>
+
+  <ul id="gorevListesi"></ul>
+
+  <script>
+    function gorevEkle() {
+      const input = document.getElementById('gorevInput');
+      const gorev = input.value.trim();
+
+      if (gorev === '') {
+        alert('gorev gir');
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.textContent = gorev;
+
+      const silBtn = document.createElement('button');
+      silBtn.textContent = 'Sil';
+      silBtn.className = 'sil-btn';
+
+      silBtn.onclick = function () {
+        li.remove();
+      };
+
+      li.appendChild(silBtn);
+
+      document.getElementById('gorevListesi').appendChild(li);
+
+      input.value = '';
+      input.focus();
+    }
+
+    document.getElementById('gorevInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        gorevEkle();
+      }
+    });
+  </script>
+
+</body>
+
+</html>
